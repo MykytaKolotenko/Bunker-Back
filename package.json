@@ -1,0 +1,32 @@
+{
+    "name": "bunker-back",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node app.js",
+        "start:dev": "nodemon app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MykytaKolotenko/Bunker-Back.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/MykytaKolotenko/Bunker-Back/issues"
+    },
+    "homepage": "https://github.com/MykytaKolotenko/Bunker-Back#readme",
+    "dependencies": {
+        "babylon": "^6.18.0",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "mongoose": "^6.8.3",
+        "nodemon": "^2.0.20"
+    },
+    "devDependencies": {
+        "@github/prettier-config": "^0.0.6"
+    }
+}
