@@ -4,8 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "node app.js",
-        "start:dev": "nodemon app.js",
+        "start": "rm -rf dist/ && tsc --project . && node dist/app.js",
+        "build": " tsc -p tsconfig.json",
+        "start:dev": "nodemon .",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -19,14 +20,24 @@
     },
     "homepage": "https://github.com/MykytaKolotenko/Bunker-Back#readme",
     "dependencies": {
+        "@types/express": "^4.17.15",
+        "@types/node": "^18.11.18",
         "babylon": "^6.18.0",
+        "class-transformer": "^0.5.1",
+        "class-validator": "^0.14.0",
         "cors": "^2.8.5",
         "dotenv": "^16.0.3",
         "express": "^4.18.2",
         "mongoose": "^6.8.3",
-        "nodemon": "^2.0.20"
+        "nodemon": "^2.0.20",
+        "reflect-metadata": "^0.1.13",
+        "routing-controllers": "^0.8.1",
+        "ts-node": "^10.9.1",
+        "tsconfig-paths": "^4.1.2",
+        "typescript": "^4.9.4"
     },
     "devDependencies": {
-        "@github/prettier-config": "^0.0.6"
+        "@github/prettier-config": "^0.0.6",
+        "@types/cors": "^2.8.13"
     }
 }
