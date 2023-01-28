@@ -1,14 +1,7 @@
-import express from 'express';
-import cors from 'cors';
-require('dotenv').config();
+import app from './app';
 
-const app: any = express();
+const port = process.env.PORT;
 
-app.use(cors());
-app.use(express.json());
-
-app.get('/', (req: any, res: any) => {
-	res.json({ 1: 'hello' });
+app.listen(port || 3000, () => {
+	console.log(`Example app listening at http://localhost:${port}`);
 });
-
-export { app };

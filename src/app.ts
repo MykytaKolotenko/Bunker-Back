@@ -1,6 +1,20 @@
-import { app } from './server';
-const PORT = process.env.PORT;
+const express = require('express');
+const app = express();
+import { createServer } from 'http';
+import { Server } from 'socket.io';
+import dotenv from 'dotenv';
 
-app.listen(PORT || 3000, () => {
-	console.log(`Example app listening on port ${PORT || 3000}!`);
+dotenv.config();
+const httpServer = createServer();
+const io = new Server(8081, {});
+
+io.on('connection', (socket) => {
+	socket.emit('hello');
+	console.log('a user connected');
 });
+
+app.get('/', (req: any, res: any) => {
+	res.send('Hello World!');
+});
+
+export default app;
