@@ -2,7 +2,7 @@
     "printWidth": 80,     
     "tabWidth": 1,         
     "singleQuote": true,  
-    "trailingComma": "none",
+    "trailingComma": "all",
     "jsxBracketSameLine": false,
     "parser": "babel",
     "noSemi": true,
