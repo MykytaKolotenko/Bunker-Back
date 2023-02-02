@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
-    
     "scripts": {
         "start": "rm -rf dist/ && tsc --project . && node dist/app.js",
         "build": " tsc -p tsconfig.json",
@@ -22,6 +21,7 @@
     "homepage": "https://github.com/MykytaKolotenko/Bunker-Back#readme",
     "dependencies": {
         "@types/express": "^4.17.15",
+        "@types/http-server": "^0.12.1",
         "@types/node": "^18.11.18",
         "babylon": "^6.18.0",
         "class-transformer": "^0.5.1",
@@ -40,6 +40,7 @@
     },
     "devDependencies": {
         "@github/prettier-config": "^0.0.6",
-        "@types/cors": "^2.8.13"
+        "@types/cors": "^2.8.13",
+        "socket.io-client": "^4.5.4"
     }
 }

@@ -1,7 +1,13 @@
 import app from './app';
+import socketStart from './socket';
 
-const port = process.env.PORT;
+const PORT = process.env.PORT || String(3000);
+const WS_PORT = process.env.WS_PORT || String(3001);
 
-app.listen(port || 3000, () => {
-	console.log(`Example app listening at http://localhost:${port}`);
-});
+(() => {
+	app.listen(PORT, () => {
+		console.log(`Example app listening at http://localhost:${PORT}`);
+	});
+
+	socketStart(WS_PORT);
+})();
