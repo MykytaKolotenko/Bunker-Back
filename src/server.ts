@@ -7,6 +7,7 @@ const WS_PORT = process.env.WS_PORT || String(3001);
 (() => {
 	app.listen(PORT, () => {
 		console.log(`Example app listening at http://localhost:${PORT}`);
+		console.log(`Example app:socket listening at http://localhost:${WS_PORT}`);
 	});
 
 	socketStart(WS_PORT);
