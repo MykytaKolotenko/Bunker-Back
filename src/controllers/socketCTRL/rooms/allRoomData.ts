@@ -1,5 +1,5 @@
 import { Server, Socket } from 'socket.io';
-import intervalEmitSendHelper from '../../helpers/intervalEmitSendHelper';
+import intervalEmitSendHelper from '../../../helpers/intervalEmitSendHelper';
 import socketActions from './roomSocketActions';
 
 export default (io: Server, socket: Socket) => {

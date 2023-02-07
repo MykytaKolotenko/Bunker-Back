@@ -1,20 +1,17 @@
 import app from './app';
 import { createServer } from 'http';
 import { Server, Socket } from 'socket.io';
-import sockedCtrl from './socketCTRL/rooms';
+import sockedCtrl from './controllers/socketCTRL/rooms';
+import connection from './controllers/socketCTRL/connection';
 
 const httpServer = createServer(app);
-const io = new Server(httpServer, {
+export const io = new Server(httpServer, {
 	cors: {
 		origin: '*',
 	},
 });
 
-const onConnection = (socket: Socket) => {
-	sockedCtrl(io, socket);
-};
-
-io.on('connection', onConnection);
+io.on('connection', connection);
 
 const socketStart = (port: string) => httpServer.listen(port);
 
