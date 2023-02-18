@@ -10,7 +10,7 @@ class GameLogic {
 	}
 
 	startGame(data: IRoom) {
-		// Add game card to all users
+		
 	}
 
 	changeParameter(id: string, type: string) {
