@@ -3,7 +3,7 @@ const { Pool } = require('pg');
 const { SQL_PASSWORD, SQL_USER, SQL_PORT, SQL_HOST, SQL_DATABASE } =
 	process.env;
 
-const pool = new Pool({
+const bunkerPool = new Pool({
 	user: SQL_USER || '',
 	password: SQL_PASSWORD,
 	host: SQL_HOST,
@@ -11,4 +11,4 @@ const pool = new Pool({
 	database: SQL_DATABASE,
 });
 
-export default pool;
+export default bunkerPool;
