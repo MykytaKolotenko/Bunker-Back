@@ -1,6 +1,7 @@
 // Imports dependencies
 import app from './app';
-import CardMethods from './gameEngine/MethodCreater/CardMethods';
+import GameCardRow from './gameEngine/MethodCreater/GameCardRow';
+import Room from './controllers/socketCTRL/rooms/RoomHandler';
 import socketStart from './socket';
 import bunkerPool from './SQL _DB/pools/Bunker/bunkerPool';
 
@@ -23,11 +24,14 @@ const WS_PORT = process.env.WS_PORT || String(3001);
 		console.log(err);
 	}
 
-	// Initializes Game Methods
-	await CardMethods.init();
+	// Initializes Game Methods, which based on DB data
+	await GameCardRow.init();
 
-	// Logs the BunkerService
-	console.log(await CardMethods.phobia.random());
+	const x = new Room(`Nikita's Room`, 'fsdfsdf');
+
+	// console.log(await GameCardRow.getAlltablesNames());
+
+	await x.startGame();
 
 	// Starts the socket
 	socketStart(WS_PORT);

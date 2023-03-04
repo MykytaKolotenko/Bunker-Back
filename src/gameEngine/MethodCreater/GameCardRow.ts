@@ -1,7 +1,7 @@
 import BunkerPool from '../../SQL _DB/pools/Bunker/bunkerPool';
-import CardRawMethods from './CardRawMethods';
+import CardRawMethods from './GameRowMethods';
 
-class CardMethods {
+class GameRow {
 	[key: string]: any;
 
 	async getAlltablesNames(): Promise<any> {
@@ -26,6 +26,10 @@ class CardMethods {
 			this.addMethodsFromTable(tableName);
 		});
 	}
+
+	rowInfo() {
+		return Object.keys(this)
+	}
 }
 
-export default new CardMethods();
+export default new GameRow();

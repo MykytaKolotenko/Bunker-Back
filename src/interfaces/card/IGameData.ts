@@ -1,12 +1,11 @@
 interface IListItemData {
-	item: string | number;
+	item: string | number | null;
 	visible: boolean;
 }
 
 interface IGameFriendOrEnemy {
 	friend_enemy: string | null;
 	visible: boolean;
-	have: boolean;
 }
 
 interface IGameData {

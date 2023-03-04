@@ -1,6 +1,6 @@
 import IRoom from '../interfaces/rooms/IRoom';
 
-class GameLogic {
+class Game {
 	constructor(gameRoom: IRoom) {
 		this.startGame(gameRoom);
 	}
@@ -9,9 +9,7 @@ class GameLogic {
 		// Open one parameter if have adiitiobal game card or on his move
 	}
 
-	startGame(data: IRoom) {
-		
-	}
+	startGame(data: IRoom) {}
 
 	changeParameter(id: string, type: string) {
 		// Change one parameter if have additional card

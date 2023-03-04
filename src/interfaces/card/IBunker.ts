@@ -1,9 +1,9 @@
 interface IBunker {
-	square: number;
-	skill_1: string;
-	skill_2: string;
-	skill_3: string;
-	skill_4: string;
+	square: number | null;
+	skill_1: string | null;
+	skill_2: string | null;
+	skill_3: string | null;
+	skill_4: string | null;
 }
 
 export default IBunker;
