@@ -1,13 +1,23 @@
 import randomizer from '../../helpers/randomizer';
 import bunkerPool from '../../SQL _DB/pools/Bunker/bunkerPool';
 
-class GameRowMethods {
-	[name: string]: Function;
+export interface IGameRowMethods {
+	all: Function;
+	random: Function;
+	length: Function;
+	byId: Function;
+}
+
+class TableRowMethods implements IGameRowMethods {
+	random: Function;
+	all: Function;
+	length: Function;
+	byId: Function;
 
 	constructor(name: string) {
 		this.all = () => this.getAllTableData(name);
 		this.random = () => this.getRandomTableData(name);
-		this.dataLength = () => this.getDataLength(name);
+		this.length = () => this.getDataLength(name);
 		this.byId = (id: number) => this.getById(name, id);
 	}
 
@@ -40,4 +50,4 @@ class GameRowMethods {
 	}
 }
 
-export default GameRowMethods;
+export default TableRowMethods;

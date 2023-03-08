@@ -1,77 +1,74 @@
 import { v4 } from 'uuid';
-import PrepareGame from '../../../gameEngine/PrepareGame';
 import IRoom from '../../../interfaces/rooms/IRoom';
 import IUser from '../../../interfaces/user/IUser';
+import ICard from '../../../interfaces/card';
+import PrepareCards from '../../../gameEngine/PrepareGame/prepareGame';
 
-export default class RoomHandler {
-	room_data: IRoom;
+export default class RoomHandler implements IRoom {
+	room_name: string;
+	room_owner: string;
+	room_id: string;
+	players: Array<IUser> = [];
+	end_game_players: number;
 
 	static maxPlayers: number = Number(process.env.MAX_PLAYERS) || 16;
 	static minPlayers = 8;
 
 	constructor(room_name: string, id: string) {
-		this.room_data = {
-			room_name,
-			room_owner: id,
-			room_id: v4(),
-			players: [],
-			end_game_players: 4,
-		};
+		this.room_name = room_name;
+		this.room_owner = id;
+		this.room_id = v4();
+		this.end_game_players = 4;
 
 		this.addPlayer(id);
 	}
 
-	addPlayer(playerId: string): boolean {
-		// Find user data from Db by id
-		const { players } = this.room_data;
-
-		const user: IUser = {
-			id: 'kjhfskfhskdf',
+	addPlayer(id: string): void {
+		// data from DB
+		const userData: IUser = {
+			id: 'dasdasd',
 			name: 'Nikita',
 			ready: false,
+			language: 'ua',
 		};
 
-		const arrayLength = players.push(user);
+		const playerExists = this.players.some(
+			(player: any) => player.user_id === userData.id,
+		);
 
-		if (arrayLength === players.length) {
-			return false;
+		if (!playerExists) {
+			this.players.push(userData);
 		}
-
-		return true;
 	}
 
-	get players() {
-		return this.room_data.players;
+	getPlayers() {
+		return this.players;
 	}
 
 	// chekers
 	endGameCount(): number {
-		const { players } = this.room_data;
-
-		const endUsersCount = players.length / 2;
+		const endUsersCount = this.players.length / 2;
 
 		if (endUsersCount <= RoomHandler.minPlayers / 2) {
 			throw new Error('need more players or wait another player to ready');
 		}
 
-		return (this.room_data.end_game_players = endUsersCount);
+		return (this.end_game_players = endUsersCount);
 	}
 
 	deletePlayer(PlayerId: string): boolean {
-		const { players } = this.room_data;
+		const playersFiltered = this.players.filter(({ id }) => id !== PlayerId);
 
-		const playersFiltered = players.filter(({ id }) => id !== PlayerId);
-
-		if (playersFiltered.length === players.length) {
+		if (playersFiltered.length === this.players.length) {
 			return false;
 		}
 
-		this.room_data.players = playersFiltered;
+		this.players = playersFiltered;
 
 		return true;
 	}
 
 	async startGame() {
-		return new PrepareGame(this.room_data.players);
+		this.players = await PrepareCards(this.players);
 	}
 }

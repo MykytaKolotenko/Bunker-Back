@@ -5,7 +5,7 @@ interface IRoom {
 	room_name: string;
 	room_owner: string;
 	room_id: string;
-	players: Array<ICard>;
+	players: Array<IUser>;
 	end_game_players: Number;
 }
 

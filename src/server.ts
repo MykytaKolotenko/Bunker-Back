@@ -1,6 +1,6 @@
 // Imports dependencies
 import app from './app';
-import GameCardRow from './gameEngine/MethodCreater/GameCardRow';
+import GameRow from './gameEngine/PrepareGame/PreparatoryMethods';
 import Room from './controllers/socketCTRL/rooms/RoomHandler';
 import socketStart from './socket';
 import bunkerPool from './SQL _DB/pools/Bunker/bunkerPool';
@@ -25,11 +25,13 @@ const WS_PORT = process.env.WS_PORT || String(3001);
 	}
 
 	// Initializes Game Methods, which based on DB data
-	await GameCardRow.init();
-
 	const x = new Room(`Nikita's Room`, 'fsdfsdf');
-
-	// console.log(await GameCardRow.getAlltablesNames());
+	x.addPlayer('ds');
+	x.addPlayer('ds');
+	x.addPlayer('ds');
+	x.addPlayer('ds');
+	x.addPlayer('ds');
+	x.addPlayer('ds');
 
 	await x.startGame();
 
