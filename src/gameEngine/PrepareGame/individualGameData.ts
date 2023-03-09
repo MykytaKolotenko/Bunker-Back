@@ -1,62 +1,99 @@
 import PreparatoryMethods from './PreparatoryMethods';
+import IUser from '../../interfaces/user/IUser';
 
-const individualGameData = async () => {
+const readyIndividualGameData = async (players: Array<IUser>) => {
+	const playersNumber = players.length;
+
+	const userCardsData = {
+		proffesion: {
+			item: await setUniquePlayerDataFromDb('proffesion', playersNumber),
+			visible: false,
+		},
+	};
+
+	// const asyncData = players.map(async (_, index) => ({
+	// 	user_card: await setIndividualGameData(),
+	// }));
+};
+
+const setUniquePlayerDataFromDb = async (
+	poleName: string,
+	playersCount: number,
+): Promise<string[] | Error> => {
+	if (
+		poleName === 'proffesion' ||
+		poleName === 'additional_info' ||
+		poleName === 'baggage' ||
+		poleName === 'skill' ||
+		poleName === 'character' ||
+		poleName === 'health' ||
+		poleName === 'hobbies' ||
+		poleName === 'hobbies' ||
+		poleName === 'phobia' ||
+		poleName === 'weight'
+	) {
+		const uniqueId: Array<number> = [];
+		const uniqueData: Array<string> = [];
+
+		do {
+			const fetchData = await PreparatoryMethods[poleName].random();
+
+			if (!uniqueId.includes(fetchData.id)) {
+				uniqueId.push(fetchData.id);
+				uniqueData.push(fetchData[poleName]);
+			}
+		} while (uniqueId.length !== playersCount);
+
+		return uniqueData;
+	}
+
+	return new Error('Not correct row data');
+};
+
+const setIndividualGameData = async (playerCount: number) => {
 	const user_card = {
 		proffesion: {
-			item: await PreparatoryMethods.proffesion.random(),
-			visible: false,
+			item: await setUniquePlayerDataFromDb('proffesion', playerCount),
 		},
 		additional_info: {
 			item: await PreparatoryMethods.additional_info.random(),
-			visible: false,
 		},
 		baggage: {
 			item: await PreparatoryMethods.baggage.random(),
-			visible: false,
 		},
 		skill_1: {
-			item: await PreparatoryMethods.additional_card.random(),
-			visible: false,
+			item: await PreparatoryMethods.skill.random(),
 		},
 		skill_2: {
-			item: await PreparatoryMethods.additional_card.random(),
-			visible: false,
+			item: await PreparatoryMethods.skill.random(),
 		},
 		character: {
-			item: await PreparatoryMethods.character_info.random(),
-			visible: false,
+			item: await PreparatoryMethods.character.random(),
 		},
 		health: {
 			item: await PreparatoryMethods.health.random(),
-			visible: false,
 		},
 		hobbies: {
 			item: await PreparatoryMethods.hobbies.random(),
-			visible: false,
 		},
 		phobia: {
 			item: await PreparatoryMethods.phobia.random(),
-			visible: false,
 		},
 		weigth: {
-			item: await PreparatoryMethods.weight_data.random(),
-			visible: false,
+			item: await PreparatoryMethods.weight.random(),
 		},
 		gender: {
 			item: 'male or female',
-			visible: false,
 		},
 		age: {
 			item: 'age',
-			visible: false,
 		},
 		friend: {
 			friend_enemy: null,
-			visible: false,
 		},
 	};
 
 	return user_card;
 };
 
-export default individualGameData;
+export default readyIndividualGameData;

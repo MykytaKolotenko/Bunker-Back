@@ -69,6 +69,6 @@ export default class RoomHandler implements IRoom {
 	}
 
 	async startGame() {
-		this.players = await PrepareCards(this.players);
+		await PrepareCards(this.players);
 	}
 }

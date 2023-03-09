@@ -14,7 +14,7 @@ interface IGameData {
 	baggage: IListItemData;
 	skill_1: IListItemData;
 	skill_2: IListItemData;
-	character: IListItemData;
+	character_info: IListItemData;
 	health: IListItemData;
 	hobbies: IListItemData;
 	phobia: IListItemData;
