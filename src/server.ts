@@ -31,7 +31,7 @@ const WS_PORT = process.env.WS_PORT || String(3001);
 
 	await x.startGame();
 
-	console.log(x.players[0].game_card?.user_card);
+	// console.log(x.players[0].game_card?.user_card);
 
 	// Starts the socket
 	socketStart(WS_PORT);
