@@ -20,12 +20,12 @@ create table bunker_data (
  
 create table additional_card (
     id BIGSERIAL NOT NULL PRIMARY KEY,
-    additional_card VARCHAR
+    skill VARCHAR
 );
  
 create table character_info (
     id BIGSERIAL NOT NULL PRIMARY KEY,
-    character_info VARCHAR
+    character VARCHAR
 );
  
 create table global_event (
@@ -50,7 +50,7 @@ create table phobia (
  
 create table weight_data (
     id BIGSERIAL NOT NULL PRIMARY KEY,
-    weight_data VARCHAR
+    weight VARCHAR
 );
  
 insert into proffesion (proffesion) values ('Полицейский');

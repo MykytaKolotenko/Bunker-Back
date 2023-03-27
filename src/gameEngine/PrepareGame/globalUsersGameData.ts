@@ -1,5 +1,5 @@
 import IBunker from '../../interfaces/card/IBunker';
-import PreparatoryMethods from './PreparatoryMethods';
+import PreparatoryMethods from '../TableMethods/PreparatoryMethods';
 
 interface ISkill {
 	id: string;

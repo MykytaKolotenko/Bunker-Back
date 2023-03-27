@@ -1,25 +1,30 @@
-import PreparatoryMethods from './PreparatoryMethods';
+import PreparatoryMethods from '../TableMethods/PreparatoryMethods';
 import IUser from '../../interfaces/user/IUser';
 
-const readyIndividualGameData = async (players: Array<IUser>) => {
-	const playersNumber = players.length;
+interface IArrayDataItem {
+	item: Array<string>;
+	visible: boolean;
+}
+interface IArrayData {
+	proffesion: IArrayDataItem;
+	additional_info: IArrayDataItem;
+	baggage: IArrayDataItem;
+	skill_1: IArrayDataItem;
+	skill_2: IArrayDataItem;
+	character: IArrayDataItem;
+	health: IArrayDataItem;
+	phobia: IArrayDataItem;
+	weight: IArrayDataItem;
+	gender: IArrayDataItem;
+	hobbies: IArrayDataItem;
+	age: IArrayDataItem;
+	friend: IArrayDataItem;
+}
 
-	const userCardsData = {
-		proffesion: {
-			item: await setUniquePlayerDataFromDb('proffesion', playersNumber),
-			visible: false,
-		},
-	};
-
-	// const asyncData = players.map(async (_, index) => ({
-	// 	user_card: await setIndividualGameData(),
-	// }));
-};
-
-const setUniquePlayerDataFromDb = async (
+const setUniquePlayerItemFromDb = async (
 	poleName: string,
 	playersCount: number,
-): Promise<string[] | Error> => {
+): Promise<Array<string>> => {
 	if (
 		poleName === 'proffesion' ||
 		poleName === 'additional_info' ||
@@ -27,7 +32,6 @@ const setUniquePlayerDataFromDb = async (
 		poleName === 'skill' ||
 		poleName === 'character' ||
 		poleName === 'health' ||
-		poleName === 'hobbies' ||
 		poleName === 'hobbies' ||
 		poleName === 'phobia' ||
 		poleName === 'weight'
@@ -47,53 +51,72 @@ const setUniquePlayerDataFromDb = async (
 		return uniqueData;
 	}
 
-	return new Error('Not correct row data');
+	return [];
 };
 
 const setIndividualGameData = async (playerCount: number) => {
-	const user_card = {
+	const user_card: IArrayData = {
 		proffesion: {
-			item: await setUniquePlayerDataFromDb('proffesion', playerCount),
+			item: await setUniquePlayerItemFromDb('proffesion', playerCount),
+			visible: false,
 		},
 		additional_info: {
-			item: await PreparatoryMethods.additional_info.random(),
+			item: await setUniquePlayerItemFromDb('additional_info', playerCount),
+			visible: false,
 		},
 		baggage: {
-			item: await PreparatoryMethods.baggage.random(),
+			item: await setUniquePlayerItemFromDb('baggage', playerCount),
+			visible: false,
 		},
 		skill_1: {
-			item: await PreparatoryMethods.skill.random(),
+			item: await setUniquePlayerItemFromDb('skill', playerCount),
+			visible: false,
 		},
 		skill_2: {
-			item: await PreparatoryMethods.skill.random(),
+			item: await setUniquePlayerItemFromDb('skill', playerCount),
+			visible: false,
 		},
 		character: {
-			item: await PreparatoryMethods.character.random(),
+			item: await setUniquePlayerItemFromDb('character', playerCount),
+			visible: false,
 		},
 		health: {
-			item: await PreparatoryMethods.health.random(),
+			item: await setUniquePlayerItemFromDb('health', playerCount),
+			visible: false,
 		},
 		hobbies: {
-			item: await PreparatoryMethods.hobbies.random(),
+			item: await setUniquePlayerItemFromDb('hobbies', playerCount),
+			visible: false,
 		},
 		phobia: {
-			item: await PreparatoryMethods.phobia.random(),
+			item: await setUniquePlayerItemFromDb('phobia', playerCount),
+			visible: false,
 		},
-		weigth: {
-			item: await PreparatoryMethods.weight.random(),
+		weight: {
+			item: await setUniquePlayerItemFromDb('weight', playerCount),
+			visible: false,
 		},
 		gender: {
-			item: 'male or female',
+			item: ['male', 'female'],
+			visible: false,
 		},
 		age: {
-			item: 'age',
+			item: ['12', '45'],
+			visible: false,
 		},
 		friend: {
-			friend_enemy: null,
+			item: ['null', 'null'],
+			visible: false,
 		},
 	};
 
 	return user_card;
+};
+
+const readyIndividualGameData = async (players: Array<IUser>) => {
+	const playersNumber = players.length;
+
+	return await setIndividualGameData(playersNumber);
 };
 
 export default readyIndividualGameData;

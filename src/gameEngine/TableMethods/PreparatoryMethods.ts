@@ -1,8 +1,6 @@
-import TableRowMethods, {
-	IGameRowMethods,
-} from '../TableMethods/TableRowMethods';
+import TableRowMethods, { IGameRowMethods } from './TableRowMethods';
 
-class AddPrepareMethods {
+class PreparatoryMethods {
 	weight: IGameRowMethods;
 	proffesion: IGameRowMethods;
 	additional_info: IGameRowMethods;
@@ -30,4 +28,4 @@ class AddPrepareMethods {
 	}
 }
 
-export default new AddPrepareMethods();
+export default new PreparatoryMethods();

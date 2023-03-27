@@ -1,22 +1,93 @@
 import IUser from '../../interfaces/user/IUser';
 import globalUsersGameData from './globalUsersGameData';
 import readyIndividualGameData from './individualGameData';
-import individualGameData from './individualGameData';
-import PreparatoryMethods from './PreparatoryMethods';
+import PreparatoryMethods from '../TableMethods/PreparatoryMethods';
 
-export default async function PrepareCards(players: Array<IUser>) {
-	const bunker_data = await globalUsersGameData();
-	const disaster = await PreparatoryMethods.global_event.random();
-	const user_card = await readyIndividualGameData(players);
+export default async function PrepareCards(
+	players: Array<IUser>,
+): Promise<any> {
+	try {
+		const bunker_data = await globalUsersGameData();
+		const disaster = await PreparatoryMethods.global_event.random();
+		const {
+			proffesion,
+			additional_info,
+			baggage,
+			skill_1,
+			skill_2,
+			character,
+			health,
+			hobbies,
+			phobia,
+			weight,
+			gender,
+			age,
+			friend,
+		} = await readyIndividualGameData(players);
 
-	const asyncData = players.map(async (userData) => ({
-		...userData,
-		game_card: {
-			bunker_data,
-			disaster,
-			user_card,
-		},
-	}));
-
-	return asyncData;
+		return players.map((userData, index: number) => ({
+			...userData,
+			game_card: {
+				bunker_data,
+				disaster,
+				user_card: {
+					proffesion: {
+						item: proffesion.item[index],
+						visible: proffesion.visible,
+					},
+					additional_info: {
+						item: additional_info.item[index],
+						visible: additional_info.visible,
+					},
+					baggage: {
+						item: baggage.item[index],
+						visible: baggage.visible,
+					},
+					skill_1: {
+						item: skill_1.item[index],
+						visible: skill_1.visible,
+					},
+					skill_2: {
+						item: skill_2.item[index],
+						visible: skill_2.visible,
+					},
+					character: {
+						item: character.item[index],
+						visible: character.visible,
+					},
+					health: {
+						item: health.item[index],
+						visible: health.visible,
+					},
+					hobbies: {
+						item: hobbies.item[index],
+						visible: hobbies.visible,
+					},
+					phobia: {
+						item: phobia.item[index],
+						visible: phobia.visible,
+					},
+					weight: {
+						item: weight.item[index],
+						visible: weight.visible,
+					},
+					gender: {
+						item: gender.item[index],
+						visible: gender.visible,
+					},
+					age: {
+						item: age.item[index],
+						visible: age.visible,
+					},
+					friend: {
+						item: friend.item[index],
+						visible: friend.visible,
+					},
+				},
+			},
+		}));
+	} catch (error) {
+		console.error('Error preparing cards:', error);
+		throw error; // проброс ошибки дальше
+	}
 }

@@ -2,7 +2,7 @@ import { v4 } from 'uuid';
 import IRoom from '../../../interfaces/rooms/IRoom';
 import IUser from '../../../interfaces/user/IUser';
 import ICard from '../../../interfaces/card';
-import PrepareCards from '../../../gameEngine/PrepareGame/prepareGame';
+import prepareCards from '../../../gameEngine/PrepareGame/prepareGame';
 
 export default class RoomHandler implements IRoom {
 	room_name: string;
@@ -68,7 +68,13 @@ export default class RoomHandler implements IRoom {
 		return true;
 	}
 
-	async startGame() {
-		await PrepareCards(this.players);
+	async startGame(): Promise<void> {
+		try {
+			const preparedCards = await prepareCards(this.players);
+
+			this.players = preparedCards;
+		} catch (error) {
+			console.error('Error preparing cards:', error);
+		}
 	}
 }
