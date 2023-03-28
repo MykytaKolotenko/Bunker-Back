@@ -28,10 +28,10 @@ const WS_PORT = process.env.WS_PORT || String(3001);
 	// Initializes Game Methods, which based on DB data
 	const x = new Room(`Nikita's Room`, 'fsdfsdf');
 	x.addPlayer('ds');
+	x.addPlayer('ds');
+	x.addPlayer('ds');
 
 	await x.startGame();
-
-	// console.log(x.players[0].game_card?.user_card);
 
 	// Starts the socket
 	socketStart(WS_PORT);

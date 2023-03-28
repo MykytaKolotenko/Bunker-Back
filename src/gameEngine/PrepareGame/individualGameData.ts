@@ -1,5 +1,6 @@
 import PreparatoryMethods from '../TableMethods/PreparatoryMethods';
 import IUser from '../../interfaces/user/IUser';
+import genderData from './genderData';
 
 interface IArrayDataItem {
 	item: Array<string>;
@@ -97,7 +98,7 @@ const setIndividualGameData = async (playerCount: number) => {
 			visible: false,
 		},
 		gender: {
-			item: ['male', 'female'],
+			item: genderData(playerCount),
 			visible: false,
 		},
 		age: {
