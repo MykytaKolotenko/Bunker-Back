@@ -30,6 +30,10 @@ const WS_PORT = process.env.WS_PORT || String(3001);
 	x.addPlayer('ds');
 	x.addPlayer('ds');
 	x.addPlayer('ds');
+	x.addPlayer('ds');
+	x.addPlayer('ds');
+	x.addPlayer('ds');
+	x.addPlayer('ds');
 
 	await x.startGame();
 

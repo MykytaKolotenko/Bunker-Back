@@ -21,17 +21,26 @@ const genderData = (playersCount: number): Array<string> => {
 		}
 	} while (data.length !== playersCount);
 
-	genderChecker(data);
+	genderChecker(data, playersCount);
+
 	return data;
 };
 
-const genderChecker = (arr: Array<string>): GenderObject => {
+const genderChecker = (
+	arr: Array<string>,
+	playersCount: number,
+): GenderObject => {
 	const genderObject: GenderObject = { male: 0, female: 0 };
 
 	arr.forEach((item: string) => genderObject[item]++);
-	console.log(arr);
 
 	console.log(genderObject);
+	const percent = genderObject.male / genderObject.female;
+	console.log(percent);
+
+	if (0.8 >= percent) {
+		genderData(playersCount);
+	}
 
 	return genderObject;
 };

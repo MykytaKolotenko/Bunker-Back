@@ -1,6 +1,7 @@
 import PreparatoryMethods from '../TableMethods/PreparatoryMethods';
 import IUser from '../../interfaces/user/IUser';
 import genderData from './genderData';
+import { log } from 'console';
 
 interface IArrayDataItem {
 	item: Array<string>;
@@ -43,7 +44,11 @@ const setUniquePlayerItemFromDb = async (
 		do {
 			const fetchData = await PreparatoryMethods[poleName].random();
 
+			console.log(fetchData);
+
 			if (!uniqueId.includes(fetchData.id)) {
+				console.log(fetchData);
+
 				uniqueId.push(fetchData.id);
 				uniqueData.push(fetchData[poleName]);
 			}
