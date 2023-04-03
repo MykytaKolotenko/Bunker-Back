@@ -29,9 +29,15 @@ class TableRowMethods implements IGameRowMethods {
 	async getRandomTableData(name: string) {
 		const allData = await this.getAllTableData(name);
 
-		const randomData = await bunkerPool.query(
-			`SELECT * FROM ${name} WHERE id=${randomizer(allData.length)}`,
-		);
+		let random: number = randomizer(allData.length);
+
+		while (random === 0) {
+			random = randomizer(allData.length);
+		}
+
+		const query = `SELECT * FROM ${name} WHERE id=${random}`;
+		const randomData = await bunkerPool.query(query);
+
 		return randomData.rows[0];
 	}
 

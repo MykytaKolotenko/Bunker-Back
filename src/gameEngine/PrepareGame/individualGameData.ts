@@ -44,11 +44,7 @@ const setUniquePlayerItemFromDb = async (
 		do {
 			const fetchData = await PreparatoryMethods[poleName].random();
 
-			console.log(fetchData);
-
 			if (!uniqueId.includes(fetchData.id)) {
-				console.log(fetchData);
-
 				uniqueId.push(fetchData.id);
 				uniqueData.push(fetchData[poleName]);
 			}
