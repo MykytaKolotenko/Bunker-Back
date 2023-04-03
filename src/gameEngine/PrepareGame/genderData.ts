@@ -1,5 +1,9 @@
 import randomizer from '../../helpers/randomizer';
 
+const { GENDER_PERCENT_DIFFERENCE } = process.env;
+
+const genderPercentDifference = Number(GENDER_PERCENT_DIFFERENCE) || 0.6;
+
 interface GenderObject {
 	[key: string]: number;
 }
@@ -34,11 +38,11 @@ const genderChecker = (
 
 	arr.forEach((item: string) => genderObject[item]++);
 
-	console.log(genderObject);
 	const percent = genderObject.male / genderObject.female;
-	console.log(percent);
+	const minPercentDif: number = genderPercentDifference - 0.01;
+	const maxPercentDif: number = 1.1 + genderPercentDifference;
 
-	if (0.8 >= percent) {
+	if (minPercentDif >= percent || maxPercentDif <= percent) {
 		genderData(playersCount);
 	}
 

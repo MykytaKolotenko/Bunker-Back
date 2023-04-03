@@ -1,10 +1,8 @@
 // Imports dependencies
 import app from './app';
-import GameRow from './gameEngine/TableMethods/PreparatoryMethods';
 import Room from './controllers/socketCTRL/rooms/RoomHandler';
 import socketStart from './socket';
 import bunkerPool from './SQL _DB/pools/Bunker/bunkerPool';
-import PreparatoryMethods from './gameEngine/TableMethods/PreparatoryMethods';
 
 // Sets ports for server and sockets
 const PORT = process.env.PORT || String(3000);
@@ -24,6 +22,8 @@ const WS_PORT = process.env.WS_PORT || String(3001);
 	} catch (err) {
 		console.log(err);
 	}
+	// Starts the socket
+	socketStart(WS_PORT);
 
 	// Initializes Game Methods, which based on DB data
 	const x = new Room(`Nikita's Room`, 'fsdfsdf');
@@ -36,7 +36,5 @@ const WS_PORT = process.env.WS_PORT || String(3001);
 	x.addPlayer('ds');
 
 	await x.startGame();
-
-	// Starts the socket
-	socketStart(WS_PORT);
+	console.log(x.players[0].game_card);
 })();

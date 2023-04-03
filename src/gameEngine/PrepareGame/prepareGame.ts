@@ -80,7 +80,7 @@ export default async function PrepareCards(
 						visible: age.visible,
 					},
 					friend: {
-						item: friend.item[index],
+						item: friend.item[index] || null,
 						visible: friend.visible,
 					},
 				},

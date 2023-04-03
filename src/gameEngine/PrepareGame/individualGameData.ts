@@ -2,9 +2,10 @@ import PreparatoryMethods from '../TableMethods/PreparatoryMethods';
 import IUser from '../../interfaces/user/IUser';
 import genderData from './genderData';
 import { log } from 'console';
+import ageData from './ageData';
 
 interface IArrayDataItem {
-	item: Array<string>;
+	item: Array<string> | Array<number>;
 	visible: boolean;
 }
 interface IArrayData {
@@ -103,22 +104,24 @@ const setIndividualGameData = async (playerCount: number) => {
 			visible: false,
 		},
 		age: {
-			item: ['12', '45'],
+			item: ageData(playerCount),
 			visible: false,
 		},
 		friend: {
-			item: ['null', 'null'],
+			item: ['null'],
 			visible: false,
 		},
 	};
 
+	// Bag: more then 8 people no calc
 	return user_card;
 };
 
 const readyIndividualGameData = async (players: Array<IUser>) => {
 	const playersNumber = players.length;
+	const data = await setIndividualGameData(playersNumber);
 
-	return await setIndividualGameData(playersNumber);
+	return data;
 };
 
 export default readyIndividualGameData;
