@@ -108,6 +108,7 @@ const setIndividualGameData = async (playerCount: number) => {
 			visible: false,
 		},
 		friend: {
+			// If you have friend or enemy card
 			item: ['null'],
 			visible: false,
 		},
