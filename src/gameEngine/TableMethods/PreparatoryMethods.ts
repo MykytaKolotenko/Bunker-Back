@@ -1,5 +1,7 @@
+// Imports the default exported module from TableRowMethods.ts and exports IGameRowMethods interface for use in other modules.
 import TableRowMethods, { IGameRowMethods } from './TableRowMethods';
 
+// Creates a new class called 'PreparatoryMethods'.
 class PreparatoryMethods {
 	weight: IGameRowMethods;
 	proffesion: IGameRowMethods;
@@ -13,6 +15,7 @@ class PreparatoryMethods {
 	hobbies: IGameRowMethods;
 	phobia: IGameRowMethods;
 
+	// Constructor method of the 'PreparatoryMethods' class that initializes properties on its instance.
 	constructor() {
 		this.weight = new TableRowMethods('weight_data');
 		this.proffesion = new TableRowMethods('proffesion');
@@ -28,4 +31,5 @@ class PreparatoryMethods {
 	}
 }
 
+// Exports an instance of the 'PreparatoryMethods' class as the default export.
 export default new PreparatoryMethods();

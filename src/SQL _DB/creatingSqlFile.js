@@ -621,8 +621,10 @@ const parameters = {
 	minPlayers: 8,
 };
 
+// Creates an array of the property names from the 'data' object.
 const keys = Object.keys(data);
 
+// Maps over the 'keys' array to create SQL table creation statements for each key and concatenates them into a single string with two newline characters as separators.
 const tables = keys
 	.map(
 		(item) => `create table ${item} (
@@ -632,12 +634,15 @@ const tables = keys
 	)
 	.join('\n \n');
 
+// Flattens out the 'data' object, maps over its arrays and creates SQL insertion statements for each item. It concatenates these statements into a single string with newline characters as separators.
 const sqlQuone = keys
 	.flatMap((item) =>
 		data[item].map((data) => `insert into ${item} (${item}) values ('${data}');`),
 	)
 	.join('\n');
 
+// Gets the absolute path to the add_data.sql file
 const PATH = path.resolve(__dirname, 'add_data.sql');
 
+// Write SQL code to add_data.sql file, by joining the string created from 'tables', '\n \n' separator, and the string created from 'sqlQuone'
 fs.writeFile(PATH, [tables, '\n \n', sqlQuone]);
