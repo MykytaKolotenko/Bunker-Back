@@ -1,7 +1,6 @@
 import PreparatoryMethods from '../TableMethods/PreparatoryMethods';
 import IUser from '../../interfaces/user/IUser';
 import genderData from './genderData';
-import { log } from 'console';
 import ageData from './ageData';
 
 interface IArrayDataItem {
@@ -114,7 +113,7 @@ const setIndividualGameData = async (playerCount: number) => {
 		},
 	};
 
-	// Bag: more then 8 people no calc
+	// Bag: more then 8 people no calc. Need to debug or change code
 	return user_card;
 };
 

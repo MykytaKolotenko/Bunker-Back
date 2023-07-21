@@ -12,7 +12,7 @@ export default class RoomHandler implements IRoom {
 	end_game_players: number;
 
 	static maxPlayers: number = Number(process.env.MAX_PLAYERS) || 16;
-	static minPlayers = 16;
+	static minPlayers = 8;
 
 	constructor(room_name: string, id: string) {
 		this.room_name = room_name;

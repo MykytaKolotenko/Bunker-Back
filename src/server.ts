@@ -27,14 +27,16 @@ const WS_PORT = process.env.WS_PORT || String(3001);
 
 	// Initializes Game Methods, which based on DB data
 	const x = new Room(`Nikita's Room`, 'fsdfsdf');
-	x.addPlayer('ds');
-	x.addPlayer('ds');
-	x.addPlayer('ds');
-	x.addPlayer('ds');
-	x.addPlayer('ds');
-	x.addPlayer('ds');
-	x.addPlayer('ds');
+	x.addPlayer('1');
+	x.addPlayer('2');
+	x.addPlayer('3');
+	x.addPlayer('4');
+	x.addPlayer('5');
 
+	
+
+	
+	console.log(x);
 	await x.startGame();
-	console.log(x.players[0].game_card);
+	
 })();
